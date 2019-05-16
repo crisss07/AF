@@ -12,5 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.prueba');
 });
+
+Route::get('prueba', function () {
+    return view('prueba');
+});
+
+Route::get('abc', function () {
+    return view('login');
+});
+
+Route::get('login',array('as'=>'login',function(){
+    return view('login');
+}));
