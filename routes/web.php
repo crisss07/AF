@@ -88,3 +88,5 @@ Route::get('/home/prueba2', function() {
     dd($json);
 });
 
+Route::get('ariel', 'ActivosController@ariel');
+

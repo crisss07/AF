@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Activo;
 use App\Actiapro;
 use App\Grupo;
+use Illuminate\Support\Collection as Collection;
 
 class ActivosController extends Controller
 {
@@ -174,6 +175,15 @@ class ActivosController extends Controller
 
 		$actiapros = Actiapro::all();
         return view('actiaprob.listaractapro', compact('actiapros'));
+	}
+
+
+	public function ariel()
+	{
+		$var = ['numbers' => [1,2,3,4,5] , 'names' => ['jhon', 'doe', 'jane', 'dann'] ];
+
+		// $collection = Collection::make($var);
+		dd($var['numbers']);
 	}
 
 	

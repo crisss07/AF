@@ -51,12 +51,28 @@ class ActiaprosController extends Controller
 		}        
 
        //aqui optenemos los datos de los activos fijos registrados
+		$nactivos = DB::select('select count(*) as nro
+											from actiapros');
+
+		$asig = DB::select('select count(*) as nro
+											from asignacions');
+
+		$dep = DB::select('select count(*) as nro
+											from asignacions');
+
+		$act = DB::select('select g.nombre, tmp.nro
+							from grupos g, (select grupo_id, count(grupo_id) as nro
+									from actiapros
+									GROUP BY(grupo_id))tmp
+							where g.id = tmp.grupo_id');
+
+		// dd($nactivos);
 		$actiapros = DB::table('actiapros')
              ->select('grupo_id', DB::raw('count(grupo_id) as total'))
              ->groupBy('grupo_id')
              ->get();
-        //dd($actiapros);
-        return view('home', compact('actiapros'));
+        // dd($actiapros[0]->grupo_id);
+        return view('home', compact('nactivos','actiapros', 'asig', 'dep', 'act'));
 	}
 
 	/**
@@ -142,6 +158,16 @@ class ActiaprosController extends Controller
 		$activo = Activo::find($id);
 		$activo->delete();
 		return back();
+	}
+
+
+	public function prueba()
+	{
+		$results = DB::select('SELECT aa.id, aa.fecha, aa.piso, per.nombre, per.ap_pat
+								FROM asignacions aa, personas per
+								WHERE aa.persona_id = per.id');
+			
+			return view('prueba.listar', compact('results'));
 	}
 
 	

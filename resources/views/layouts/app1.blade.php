@@ -91,7 +91,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 
-                                <span class="username username-hide-on-mobile">{{ Auth::user()->name }} </span>
+                                <span class="username username-hide-on-mobile">{{ Auth::user()->name }} <?php echo 'Salinas'; ?></span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
 

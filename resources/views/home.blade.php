@@ -16,7 +16,7 @@
             </div>
             <div class="details">
                 <div class="number">
-                    <span data-counter="counterup" data-value="1349">11500</span>
+                    <span data-counter="counterup" data-value="1349">{{ $nactivos[0]->nro }}</span>
                 </div>
                 <div class="desc"> Activos Registrados </div>
             </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="details">
                 <div class="number">
-                    <span data-counter="counterup" data-value="12,5">{{ '9749' }}</span>
+                    <span data-counter="counterup" data-value="12,5">{{ $asig[0]->nro }}</span>
                 </div>
                 <div class="desc"> Activos Asignados </div>
             </div>
@@ -48,7 +48,7 @@
             </div>
             <div class="details">
                 <div class="number">
-                    <span data-counter="counterup" data-value="549">{{ '1100' }}</span>
+                    <span data-counter="counterup" data-value="549">{{ $nactivos[0]->nro - ($asig[0]->nro + $dep[0]->nro) }}</span>
                 </div>
                 <div class="desc"> Activos Disponibles </div>
             </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="details">
                 <div class="number"> 
-                    <span data-counter="counterup" data-value="89">{{ '651' }}</span> </div>
+                    <span data-counter="counterup" data-value="89">{{ $dep[0]->nro }}</span> </div>
                 <div class="desc"> Activos en Dep&oacute;sito </div>
             </div>
             <a class="more" href="javascript:;"> Lista
@@ -72,8 +72,10 @@
             </a>
         </div>
     </div>
+ 
+       
 
-    <div class="portlet light bordered" id="piechart_3d" style="width: 550px; 
+    <!-- <div class="portlet light bordered" id="piechart_3d" style="width: 550px; 
         height: 600px;
 
         display:block;
@@ -88,11 +90,37 @@
 
         min-height:10px;">
       
-    </div>
+    </div> -->
+    
+
+    <!-- <div class="row"> -->
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Compra de activos</h4>
+                        <div>
+                            <canvas id="chart1" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Detalle de Activos</h4>
+                        <div>
+                            <canvas id="chart3" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    <!-- </div> -->
 
 
-
-    <div class="portlet light bordered" style="width: 550px; 
+    <!-- <div class="portlet light bordered" style="width: 550px; 
             height: 600px;
 
             display:block;
@@ -118,7 +146,7 @@
             <div id="chart_1" class="chart" style="height: 500px;"> </div>
         </div>
         
-    </div>
+    </div> -->
 
 @endsection
 
@@ -160,14 +188,50 @@
         ]);
 
 
-        var options = {
-          title: 'Grupos Contables Activos Fijos',
-          is3D: true,
-        };
+        // var options = {
+        //   title: 'Grupos Contables Activos Fijos',
+        //   is3D: true,
+        // };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
+        // var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        // chart.draw(data, options);
+        <?php $dep = DB::select('select count(grupo_id) as nro from actiapros'); ?>
+
+
+        new Chart(document.getElementById("chart1"),
+        {
+            "type":"line",
+                //"data":{"labels":["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+                "data":{"labels":["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio"],
+                "datasets":[{
+                    "label":"Compras por mes",
+                    //"data":[65,59,80,81,0,0,0,0,0,0,0,0],
+                    "data":[5,6,100,8,0,2,3],
+                    "fill":false,
+                    "borderColor":"rgb(86, 192, 216)",
+                    "lineTension":0.1
+                }]
+            },"options":{}});
+
+        
+        
+        new Chart(document.getElementById("chart3"),
+        {
+            "type":"pie",
+            "data":{"labels":["EDIFICACIONES","MUEBLES Y ENSERES DE OFICINA", "MAQUINARIA EN GENERAL", "VEHICULOS AUTOMOTORES"],
+            "datasets":[{
+                "label":"My First Dataset",
+                "data":[<?php echo '2' ?>, <?php echo '52' ?>, <?php echo '1' ?>, <?php echo '1' ?>],
+
+                
+                "backgroundColor":["rgb(255, 0, 0)","rgb(0, 182, 60)"]}
+                ]}
+        });
+
+         
+
       }
+
 </script>
 
  <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -178,6 +242,8 @@
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('pages/scripts/charts-amcharts.min.js')}}" type="text/javascript"></script>
+
+<script src="{{ asset('global/plugins/Chart.js/Chart.min.js')}}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
 

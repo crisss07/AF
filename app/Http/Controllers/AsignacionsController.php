@@ -24,7 +24,6 @@ class AsignacionsController extends Controller
 	public function index()
 	{
 		//
-
 		$activos = Activo::all();
         return view('activos.lista', compact('activos'));
 	}
