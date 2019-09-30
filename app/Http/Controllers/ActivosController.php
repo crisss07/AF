@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 use App\Activo;
 use App\Actiapro;
 use App\Grupo;
+use DB;
 use Illuminate\Support\Collection as Collection;
 
 class ActivosController extends Controller
 {
+
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function principal()
 	{
 
@@ -46,7 +53,248 @@ class ActivosController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		Activo::create($request->all());
+		$codigo_actual = $request->input('codigo_actual');
+		$fecha_compra = $request->input('fecha_compra');
+		$ufv = $request->input('ufv');
+		$grupo_id = $request->input('grupo_id');
+		$auxiliar_id = $request->input('auxiliar_id');
+
+		$valor = $request->input('valor');
+		$descripcion = $request->input('descripcion');
+		$fuente_financiamiento = $request->input('fuente_financiamiento');
+		$estado = $request->input('estado');
+		$observaciones = $request->input('observaciones');
+
+		switch($grupo_id) {
+				case 1:
+				$modelo_medida = $request->input('modelo_medida_edificaciones');
+				$material_marca = $request->input('material_marca_edificaciones');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'modelo_medida' => "$modelo_medida", 
+		            'material_marca' => "$material_marca"
+		            ]
+		        );
+				break;
+				case 2:
+				$color= $request->input('color_muebles');
+				$material_marca = $request->input('material_marca_muebles');
+				$modelo_medida = $request->input('modelo_medida_muebles');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'color' => "$color",
+		            'material_marca' => "$material_marca", 
+		            'modelo_medida' => "$modelo_medida"
+		            ]
+		        );
+				break;
+				case 3:
+				$modelo_medida = $request->input('modelo_medida_maquinaria');
+				$color = $request->input('color_maquinaria');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'modelo_medida' => "$modelo_medida", 
+		            'color' => "$color"
+		            ]
+		        );
+				break;
+				case 5:
+				$material_marca= $request->input('material_marca_comunicacion');
+				$modelo_medida = $request->input('modelo_medida_comunicacion');
+				$serie = $request->input('serie_comunicacion');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'material_marca' => "$material_marca",
+		            'modelo_medida' => "$modelo_medida", 
+		            'serie' => "$serie"
+		            ]
+		        );
+				break;
+				case 6:
+				$material_marca= $request->input('material_marca_educacional');
+				$color = $request->input('color_educacional');
+				$modelo_medida = $request->input('modelo_medida_educacional');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'material_marca' => "$material_marca", 
+		            'color' => "$color", 
+		            'modelo_medida' => "$modelo_medida"
+		            ]
+		        );
+
+				break;
+				case 8:
+				$serie = $request->input('serie_vehiculos');
+				$color = $request->input('color_vehiculos');
+				$modelo_medida = $request->input('modelo_medida_vehiculos');
+				$disco_duro = $request->input('disco_duro_vehiculos');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'serie' => "$serie", 
+		            'color' => "$color", 
+		            'modelo_medida' => "$modelo_medida", 
+		            'disco_duro' => "$disco_duro"
+		            ]
+		        );
+				break;
+				case 15:
+				$material_marca = $request->input('material_marca_computacion');
+				$modelo_medida = $request->input('modelo_medida_computacion');
+				$serie = $request->input('serie_computacion');
+				$procesador = $request->input('procesador_computacion');
+				$memoria_ram = $request->input('memoria_ram_computacion');
+				$disco_duro = $request->input('disco_duro_computacion');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'material_marca' => "$material_marca", 
+		            'modelo_medida' => "$modelo_medida", 
+		            'serie' => "$serie", 
+		            'procesador' => "$procesador", 
+		            'memoria_ram' => "$memoria_ram", 
+		            'disco_duro' => "$disco_duro", 
+		            ]
+		        );
+				break;
+				case 36:
+				$material_marca = $request->input('material_marca_otros');
+				$color = $request->input('color_otros');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'material_marca' => "$material_marca", 
+		            'color' => "$color" 
+		            ]
+		        );
+				break;
+				case 39:
+				$material_marca= $request->input('material_marca_maquinaria');
+				$color = $request->input('color_maquinaria');
+				$serie = $request->input('serie_maquinaria');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'material_marca' => "$material_marca", 
+		            'color' => "$color", 
+		            'serie' => "$serie" 
+		            ]
+		        );
+				break;
+				case 40:
+				$material_marca= $request->input('material_marca_otro');
+				$modelo_medida = $request->input('modelo_medida_otro');
+				$serie = $request->input('serie_otro');
+				DB::table('activos')->insertGetId(
+		            [
+		            'codigo_actual' => "$codigo_actual", 
+		            'fecha_compra' => "$fecha_compra", 
+		            'ufv' => "$ufv", 
+		            'grupo_id' => "$grupo_id", 
+		            'auxiliar_id' => "$auxiliar_id", 
+		            'valor' => "$valor", 
+		            'descripcion' => "$descripcion", 
+		            'fuente_financiamiento' => "$fuente_financiamiento", 
+		            'estado' => "$estado", 
+		            'observaciones' => "$observaciones", 
+		            'material_marca' => "$material_marca", 
+		            'modelo_medida' => "$modelo_medida", 
+		            'serie' => "$serie" 
+		            ]
+		        );
+				break;
+				default:
+				
+			}
+
+		// dd($codigo);
+		// Activo::create($request->all());
 		//dd(Activo::create($request->all()));
     	return redirect('/vista');
 	}

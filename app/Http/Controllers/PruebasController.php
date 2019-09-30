@@ -12,6 +12,13 @@ use Soapclient;
 
 class PruebasController extends Controller
 {
+
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function grupos()
 	{	
 		$fecha = new \DateTime();

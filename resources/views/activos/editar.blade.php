@@ -24,7 +24,8 @@
 @endsection
 
  @section('contenido') 
-
+<div class="col-md-12">
+  <div class="tabbable-line boxless tabbable-reversed"> 
 
   <div class="tab-content">
         <div class="tab-pane active" id="tab_0">
@@ -140,6 +141,8 @@
                     <!-- END FORM-->
                 </div>
           </div>
+     </div>
+</div>
      </div>
 </div>
 @endsection

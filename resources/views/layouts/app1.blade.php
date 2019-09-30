@@ -91,7 +91,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 
-                                <span class="username username-hide-on-mobile">{{ Auth::user()->name }} <?php echo 'Salinas'; ?></span>
+                                <span class="username username-hide-on-mobile">{{ Auth::user()->name }}</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
 
@@ -158,7 +158,7 @@ License: You must have a valid license purchased only from themeforest(the above
                            
                             <!-- END RESPONSIVE QUICK SEARCH FORM -->
                         </li>
-                        <li class="nav-item start active open">
+                        <li class="nav-item start">
                             <a href="/home" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Principal</span>
@@ -174,7 +174,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="glyphicon glyphicon-qrcode"></i>
                                 <span class="title">ACTIVOS</span>
-                                <span class="arrow"></span>
+                                <span class="selected"></span>
+                                <span class="arrow open"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item start">
@@ -262,35 +263,45 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
-                                        <span class="title">Tipos</span>
+                                    <a href="{{ url('auxiliar/ver') }}" class="nav-link ">
+                                        <span class="title">Auxiliares</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
-                                        <span class="title">Fuentes de Financiamiento</span>
+                                    <a href="{{ url('cargo/ver') }}" class="nav-link ">
+                                        <span class="title">Cargos</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="{{ url('grupo/ver') }}" class="nav-link ">
+                                        <span class="title">Grupos</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="{{ url('dep/ver') }}" class="nav-link ">
+                                        <span class="title">Departamentos</span>
                                     </a>
                                 </li> 
                                 <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
-                                        <span class="title">Grupo Contable</span>
+                                    <a href="{{ url('personas') }}" class="nav-link ">
+                                        <span class="title">Personas</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
-                                        <span class="title">Proveedores</span>
-                                    </a>
-                                </li> 
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
-                                        <span class="title">Seguro</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
+                                    <a href="{{ url('pisos') }}" class="nav-link ">
                                         <span class="title">Pisos</span>
                                     </a>
-                                </li> 
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="{{ url('unidades') }}" class="nav-link ">
+                                        <span class="title">Unidades</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="{{ url('ofi/ver') }}" class="nav-link ">
+                                        <span class="title">Oficinas</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -301,66 +312,66 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
+                                <!-- <li class="nav-item">
+                                    <a href="#" class="nav-link">
                                         <span class="title">Depreciacion de Activos</span>
                                     </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
+                                </li> -->
+                                <li class="nav-item">
+                                    <a href="{{ url('Inv_Ord_Cod_Act') }}" class="nav-link " target="_blank">
                                         <span class="title">Inventario Ordenado por Codigo de Activos</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('Inv_Ord_Gr_Cont') }}" class="nav-link " target="_blank">
                                         <span class="title">Inventario Ordenado por Grupo Contable</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('Inv_Ord_Aux_Cont') }}" class="nav-link " target="_blank">
                                         <span class="title">Inventario Ordenado por Por Auxiliar Contable</span>
                                     </a>
                                 </li>  
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('Inv_Ord_Ofi') }}" class="nav-link " target="_blank">
                                         <span class="title">Inventario Ordenado por Oficina</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('Inv_Ord_Ofi_Resp') }}" class="nav-link " target="_blank">
                                         <span class="title">Inventario Ordenado por Oficina y Responsable</span>
                                     </a>
                                 </li>  
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
-                                        <span class="title">Resumen de ACtivos Fijos por Grupo</span>
+                               <!--  <li class="nav-item">
+                                    <a href="{{ url('#') }}" class="nav-link " target="_blank">
+                                        <span class="title">Resumen de Activos Fijos por Grupo</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
-                                        <span class="title">Detalle de REoinsabke por Oficina</span>
+                                <li class="nav-item">
+                                    <a href="{{ url('#') }}" class="nav-link " target="_blank">
+                                        <span class="title">Detalle de Responsable por Oficina</span>
                                     </a>
                                 </li>  
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('#') }}" class="nav-link " target="_blank">
                                         <span class="title">Reporte Histórico de Activos Dados de Baja</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('#') }}" class="nav-link " target="_blank">
                                         <span class="title">Reporte de Indices UFV</span>
                                     </a>
                                 </li>  
-                                <li class="nav-item  ">
-                                    <a href="components_date_time_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('#') }}" class="nav-link " target="_blank">
                                         <span class="title">Asignacion Individuales de Bienes</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="components_color_pickers.html" class="nav-link ">
+                                <li class="nav-item">
+                                    <a href="{{ url('#') }}" class="nav-link " target="_blank">
                                         <span class="title">Acta de Devolucion de Bienes</span>
                                     </a>
-                                </li>                                  
+                                </li>                                   -->
                             </ul>
                         </li>
                         

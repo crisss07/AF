@@ -14,6 +14,11 @@ use DB;
 
 class CategoriasController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function grupos()
 	{	
 		$fechas = new \DateTime();
@@ -31,4 +36,42 @@ class CategoriasController extends Controller
 		return response()->json($auxiliar);
 	}
 	
+	public function contar()
+	{
+		$auxiliar_id = Input::get('auxiliar_id');
+		$num = DB::select("SELECT SUM(nro1 + nro2 + 1) as nro
+							FROM (SELECT count(*) as nro1
+									FROM activos
+									WHERE auxiliar_id = '$auxiliar_id')tmp, (SELECT count(*) as nro2
+																FROM actiapros
+																WHERE auxiliar_id = '$auxiliar_id')tmp1");
+
+		return response()->json($num);
+	}
+
+	public function ppp()
+	{
+		$auxiliar_id = Input::get('auxiliar_id');
+		$num = DB::select("SELECT count(*) as nro
+							FROM actiapros
+							WHERE auxiliar_id = 1");
+
+		$num1 = DB::select("SELECT count(*) as nro
+							FROM activos
+							WHERE auxiliar_id = 1");
+
+		$sum = $num[0]->nro + $num1[0]->nro;
+
+		dd($sum);
+	}
+
+	public function consulta_ufv()
+	{
+		$fecha = Input::get('fecha_compra');
+		$fec = DB::select("SELECT ufv
+							FROM cambios
+							WHERE fecha like '$fecha'");
+		return response()->json($fec);
+	}
+
 }

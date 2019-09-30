@@ -8,9 +8,17 @@ use App\Asign;
 use App\Persona;
 use DB;
 use App;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class AsignacionsController extends Controller
 {
+
+	public function __construct()
+    {
+        $this->middleware('auth');
+    } 
+
+    
     public function principal()
 	{
 
@@ -58,11 +66,50 @@ class AsignacionsController extends Controller
 	 */
 	public function show($id)
 	{
-		$recibos = Asignacion::find($id);
-		$view = view ('prueba.pdf', compact('recibos'));
-		$pdf = App::make('dompdf.wrapper');
-		$pdf->loadHTML($view);
-		return $pdf->stream('recibos');
+		
+		$persona = DB::select("SELECT a.*, p.*, c.*
+								FROM asignacions a, personas p, cargos c
+								WHERE a.id = $id
+								AND p.id = a.persona_id
+								AND p.cargo_id = c.id");
+
+		$activos = DB::select("SELECT asi.*, ac.*
+								FROM asigns asi, actiapros ac
+								WHERE  asi.asignacion_id = $id
+								AND asi.actiapro_id = ac.id");
+
+
+		// $activos = DB::select('SELECT a.*, asi.*, p.*, ac.*
+		// 						FROM asignacions a, asigns asi, personas p, actiapros ac
+		// 						WHERE a.id = "$id"
+		// 						AND a.persona_id = p.id
+		// 						AND a.id = asi.asignacion_id 
+		// 						AND asi.actiapro_id = ac.id');
+
+		
+
+		// $asignados = DB::select("SELECT a.id, p.*
+		// 						FROM asignacions a, personas p
+		// 						WHERE a.id = '$id'
+		// 						AND a.persona_id = p.id");
+
+		// $asignados = DB::select("SELECT asi.*, per.*
+		// 						FROM asignacions asi, personas per
+		// 						WHERE asi.id = '$id' 
+		// 						AND asi.persona_id = per.id");
+
+		
+
+		// dd($asignados[0]->nombre);
+
+		// dd($activos);
+
+
+		
+
+		$fecha = date("d/m/Y");
+        $pdf = PDF::loadView('reportes.asignacion', compact('persona', 'activos', 'fecha'))->setPaper('letter', 'landscape');
+        return $pdf->stream();
 	}
 
 	/**

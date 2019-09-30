@@ -5,6 +5,9 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="{{ asset('global/plugins/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css')}}" rel="stylesheet" type="text/css" />
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="{{ asset('global/plugins/socicon/socicon.css')}}" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
 <!-- END PAGE LEVEL PLUGINS -->
 @endsection
 
@@ -32,15 +35,15 @@
                 @if($activos->count())
                   
                 @foreach($activos as $activo)  
-                <tr>
-                      <td>{{$num = $num + 1}}</td>
-                      <td>{{$activo->codigo_actual}}</td>
-                      <td>{{$activo->fecha_compra}}</td>
-                      <td>{{$activo->descripcion}}</td>
+                <tr style="font-size: 12px;">
+                      <td >{{$num = $num + 1}}</td>
+                      <td >{{$activo->codigo_actual}}</td>
+                      <td >{{$activo->fecha_compra}}</td>
+                      <td >{{$activo->descripcion}}</td>
                       <td>{{$activo->grupo->nombre}}</td>
                       
                       <td>
-                          <a href="{{ url($activo->id.'/edit')}}" class="fa-item col-md-3 col-sm-4">
+                          <a href="{{ url($activo->id.'/edit')}}" data-toggle="modal" data-target="#exampleModal" class="fa-item col-md-3 col-sm-4">
                                   <i class="fa fa-edit"></i></a>
                           <a href="{{ url($activo->id.'/delete')}}" class="fa-item col-md-3 col-sm-4">
                                   <i class="fa fa-trash-o"></i></a>
@@ -48,7 +51,10 @@
                                   <i class="fa fa-thumbs-o-up"></i></a>
                           <!--<a href="{{ url($activo->id.'/edit')}}" class="fa-item col-md-3 col-sm-4">
                                   <i class="fa fa-eye"></i></a>-->
-
+                         <!--  <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid bg-red bg-hover-grey-salsa font-white bg-hover-white socicon-google tooltips" data-original-title="Editar"></a>
+                          <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid bg-green bg-hover-grey-salsa font-white bg-hover-white socicon-pinterest tooltips" data-original-title="Eliminar"></a>
+                          <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid bg-yellow bg-hover-grey-salsa font-white bg-hover-white socicon-foursquare tooltips" data-original-title="Aprobar"></a>
+                                 -->
                          
                            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                               EDITAR
@@ -71,8 +77,7 @@
    
     <!-- END SAMPLE TABLE PORTLET-->
 </div>
- 
-
+          
   <script> 
     swal({
         "timer":1800,
