@@ -38,6 +38,8 @@ Route::get('json-contar', 'CategoriasController@contar');
 
 Route::get('json-conufv', 'CategoriasController@consulta_ufv');   //CONSULTA LA FECHA DE LAS UFVS
 
+Route::get('json-veriaux', 'CategoriasController@consulta_aux');   //CONSULTA LA FECHA DE LAS UFVS
+
 Route::get('vista', 'ActivosController@index');//listar activos
 
 Route::get('{id}/edit', 'ActivosController@edit');//editar registro de activo

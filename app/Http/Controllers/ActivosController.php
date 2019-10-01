@@ -32,7 +32,7 @@ class ActivosController extends Controller
 	{
 		//
 
-		$activos = Activo::all();
+		$activos = Activo::orderBy('id', 'DESC')->get();
         return view('activos.lista', compact('activos'));
 	}
 
@@ -426,13 +426,7 @@ class ActivosController extends Controller
 	}
 
 
-	public function ariel()
-	{
-		$var = ['numbers' => [1,2,3,4,5] , 'names' => ['jhon', 'doe', 'jane', 'dann'] ];
-
-		// $collection = Collection::make($var);
-		dd($var['numbers']);
-	}
+	
 
 	
 }

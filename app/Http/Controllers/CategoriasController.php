@@ -74,4 +74,16 @@ class CategoriasController extends Controller
 		return response()->json($fec);
 	}
 
+	public function consulta_aux()
+	{
+		$aux = Input::get('auxiliar_id');
+		$nombre = DB::select("SELECT nombre
+								FROM auxiliars
+								WHERE id like '$aux'");
+		return response()->json($nombre);
+	}
+
 }
+
+
+    

@@ -1,6 +1,8 @@
 @extends('layouts.app1')
 
 @section('js')
+
+
 <script type="text/javascript">
     //jquery para hacer select de select
     $('#grupo').on('change', function(e){
@@ -136,6 +138,178 @@
         });
         
      });
+
+// para mostrar los items
+
+    // var all_spans = $('.item a').parent().find('span');
+    // $('.item a').click(function(e){
+    //     e.preventDefault();
+    //     // hide all span
+    //     all_spans.hide();
+    //     $this = $(this).parent().find('span');
+    //     // here is what I want to do
+    //     if ($this.is(':hidden')) {
+    //         $(this).parent().find('span').show();
+    //     } else {
+    //         $(this).parent().find('span').hide();
+    //     }
+    // });
+// fin mostrar los items
+
+      
+   /* jQuery(document).ready(function(){
+
+        $('#descripcion').empty();
+
+        $('#edimension').empty();
+        $('#edireccion').empty();
+
+
+        $('#edimension').on('keyup', function(){
+            $('#descripcion').empty();
+            var x = this.value;
+        });
+
+        $('#edireccion').on('keyup', function(){
+            $('#descripcion').empty();
+            $('#descripcion').append(this.value);
+        });
+      
+    })*/
+
+// function procesar() {
+//     grupo=document.getElementById('grupo').value;
+   
+//     if (grupo==1) {
+//         campo1=document.getElementById('edimension').value;
+//         campo=', ';
+//         campo2=document.getElementById('edireccion').value;
+//         descripcion=campo1+campo+campo2;
+        
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         $('#descripcion').empty();
+        
+//             $(descripcion).on('keyup', function(){
+//             $('#descripcion').empty();
+//             var x = this.value;
+//         });
+//     }
+//     if (grupo==2) {
+//         campo1=document.getElementById('myecolor').value;
+//         campo=', ';
+//         campo2=document.getElementById('myematerial').value;
+//         campo3=document.getElementById('myemedida').value;
+//         descripcion=campo1+campo+campo2+campo+campo3;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//     }
+//     if (grupo==3) {
+//         campo1=document.getElementById('memodelo').value;
+//         campo=', ';
+//         campo2=document.getElementById('mecolor').value;
+//         descripcion=campo1+campo+campo2;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//     }
+//     switch (grupo) {
+//     case 1:
+        
+//         campo1=document.getElementById('edimension').value;
+//         campo=', ';
+//         campo2=document.getElementById('edireccion').value;
+//         descripcion=campo1+campo+campo2;
+        
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;  
+//     case 2:
+//         campo1=document.getElementById('myecolor').value;
+//         campo=', ';
+//         campo2=document.getElementById('myematerial').value;
+//         campo3=document.getElementById('myemedida').value;
+//         descripcion=campo1+campo+campo2+campo+campo3;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 3:
+//         campo1=document.getElementById('memodelo').value;
+//         campo=', ';
+//         campo2=document.getElementById('mecolor').value;
+//         descripcion=campo1+campo+campo2;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 5:
+//         campo1=document.getElementById('ecmarca').value;
+//         campo=', ';
+//         campo2=document.getElementById('ecmodelo').value;
+//         campo3=document.getElementById('ecserie').value;
+//         descripcion=campo1+campo+campo2+campo+campo3;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 6:
+//         campo1=document.getElementById('eermaterial').value;
+//         campo=', ';
+//         campo2=document.getElementById('eercolor').value;
+//         campo3=document.getElementById('eerdimensiones').value;
+//         descripcion=campo1+campo+campo2+campo+campo3;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 8:
+//         campo1=document.getElementById('vaserie').value;
+//         campo=', ';
+//         campo2=document.getElementById('vacolor').value;
+//         campo3=document.getElementById('vamodelo').value;
+//         campo4=document.getElementById('vapuertas').value;
+//         descripcion=campo1+campo+campo2+campo+campo3+campo+campo4;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 15:
+//         campo1=document.getElementById('ecomarca').value;
+//         campo=', ';
+//         campo2=document.getElementById('ecomodelo').value;
+//         campo3=document.getElementById('ecoserie').value;
+//         campo4=document.getElementById('ecoprocesador').value;
+//         campo5=document.getElementById('ecomemoria').value;
+//         campo6=document.getElementById('ecodisco').value;
+//         descripcion=campo1+campo+campo2+campo+campo3+campo+campo4+campo+campo5+campo+campo6;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 36:
+//         campo1=document.getElementById('oafmarca').value;
+//         campo=', ';
+//         campo2=document.getElementById('oafcolor').value;
+//         descripcion=campo1+campo+campo2;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 39:
+//         campo1=document.getElementById('omemarca').value;
+//         campo=', ';
+//         campo2=document.getElementById('omecolor').value;
+//         campo3=document.getElementById('omeserie').value;
+//         descripcion=campo1+campo+campo2+campo+campo3;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+//     case 40:
+//         campo1=document.getElementById('otmarca').value;
+//         campo=', ';
+//         campo2=document.getElementById('otmodelo').value;
+//         campo3=document.getElementById('otserie').value;
+//         descripcion=campo1+campo+campo2+campo+campo3;
+//         document.getElementById('descripcion').value=descripcion;
+//         document.forms.ejemplo.submit();
+//         break;
+// }
+
+// }
+
 </script>
 @endsection
 
